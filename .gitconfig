@@ -1,0 +1,20 @@
+[user]
+	email = caoxudong818@gmail.com
+	name = caoxudong
+[push]
+	default = simple
+[color]
+        ui = auto
+[alias]
+    st = status
+    ci = commit
+    br = branch
+    co = checkout
+    cvsup = !sh -c \"git stash && git cvsimport -v -k -i && git rebase origin && git stash pop\"
+    svnup = !sh -c \"git stash && git svn rebase && git stash pop\"
+    up = !sh -c \"git stash && git pull --rebase && git stash pop\"
+    logs  = log --stat --abbrev-commit --color-words
+    logo = log --abbrev-commit --pretty=oneline
+    diffs = diff -p --stat --color-words
+    shows = show --abbrev-commit
+    unstage = reset HEAD

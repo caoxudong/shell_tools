@@ -2,9 +2,9 @@
 	email = caoxudong818@gmail.com
 	name = caoxudong
 [push]
-	default = simple
+	default = current
 [color]
-        ui = auto
+    ui = auto
 [alias]
     st = status
     ci = commit

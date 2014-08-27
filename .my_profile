@@ -6,25 +6,9 @@ export EDITOR="vim"
 
 
 #add git support
-find_git_branch () {
-    local dir=. head
-    until [ "$dir" -ef / ]; do
-        if [ -f "$dir/.git/HEAD" ]; then
-            head=$(< "$dir/.git/HEAD")
-            if [[ $head = ref:\ refs/heads/* ]]; then
-                git_branch=" → ${head#*/*/}"
-            elif [[ $head != '' ]]; then
-                git_branch=" → (detached)"
-            else
-                git_branch=" → (unknow)"
-            fi
-            return
-        fi
-        dir="../$dir"
-    done
-    git_branch=''
+parse_git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
-PROMPT_COMMAND="find_git_branch; $PROMPT_COMMAND"
 
   black=$'\[\e[1;30m\]'
     red=$'\[\e[1;31m\]'
@@ -35,7 +19,7 @@ magenta=$'\[\e[1;35m\]'
    cyan=$'\[\e[1;36m\]'
   white=$'\[\e[1;37m\]'
  normal=$'\[\e[m\]'
-PS1="$white[$magenta\u$white@$green\h$white:$cyan\w$yellow\$git_branch$white]\$ $normal"
+PS1="[$cyan\u$normal@$yellow\h:$white\l $magenta\w$normal]$yellow$(parse_git_branch)$normal\\n\\$ "
 
 
 #java settings

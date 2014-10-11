@@ -1,14 +1,12 @@
 #!/bin/bash
 
+# 在.bash_profile中调用该脚本
+
 #environment settings
 alias ..='cd ..'
 export EDITOR="vim"
 
 
-#add git support
-parse_git_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
-}
 
   black=$'\[\e[1;30m\]'
     red=$'\[\e[1;31m\]'
@@ -19,8 +17,25 @@ magenta=$'\[\e[1;35m\]'
    cyan=$'\[\e[1;36m\]'
   white=$'\[\e[1;37m\]'
  normal=$'\[\e[m\]'
-PS1="[$cyan\u$normal@$yellow\h:$white\l $magenta\w$normal]$yellow$(parse_git_branch)$normal\\n\\$ "
 
+#add git support
+function git_branch {
+    ref=$(git symbolic-ref HEAD 2> /dev/null) || return;
+    echo "("${ref#refs/heads/}") ";
+}
+ 
+function git_since_last_commit {
+    now=`date +%s`;
+    last_commit=$(git log --pretty=format:%at -1 2> /dev/null) || return;
+    seconds_since_last_commit=$((now-last_commit));
+    minutes_since_last_commit=$((seconds_since_last_commit/60));
+    hours_since_last_commit=$((minutes_since_last_commit/60));
+    minutes_since_last_commit=$((minutes_since_last_commit%60));
+    
+    echo "${hours_since_last_commit}h${minutes_since_last_commit}m ";
+}
+ 
+PS1="[\[\033[1;32m\]\w\[\033[0m\]] \[\033[0m\]\[\033[1;36m\]\$(git_branch)\[\033[0;33m\]\$(git_since_last_commit)\[\033[0m\]$ " 
 
 #java settings
 ORACLE_JDK="/home/henry/program/java/oracle_jdk/jdk1.7.0_51"

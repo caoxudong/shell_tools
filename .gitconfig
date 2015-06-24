@@ -1,8 +1,8 @@
 [user]
-	email = caoxudong818@gmail.com
-	name = caoxudong
+    email = caoxudong818@gmail.com
+    name = caoxudong
 [push]
-	default = current
+    default = matching
 [color]
     ui = auto
 [alias]
@@ -13,8 +13,20 @@
     cvsup = !sh -c \"git stash && git cvsimport -v -k -i && git rebase origin && git stash pop\"
     svnup = !sh -c \"git stash && git svn rebase && git stash pop\"
     up = !sh -c \"git stash && git pull --rebase && git stash pop\"
-    logs  = log --stat --abbrev-commit --color-words
+    logs = log --stat --abbrev-commit --color-words
     logo = log --abbrev-commit --pretty=oneline
     diffs = diff -p --stat --color-words
     shows = show --abbrev-commit
     unstage = reset HEAD
+    pl = pull --rebase
+[core]
+    autocrlf = true
+    editor = vi
+    excludesfile = ~/gitignore_global.txt
+[i18n]
+    filesEncoding = utf-8
+[filter "lfs"]
+    clean = git lfs clean %f
+    smudge = git lfs smudge %f
+    required = true
+

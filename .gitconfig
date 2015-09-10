@@ -20,6 +20,7 @@
     unstage = reset HEAD
     pl = pull --rebase
 [core]
+    autocrlf = false
     editor = vi
     excludesfile = ~/gitignore_global.txt
 [i18n]

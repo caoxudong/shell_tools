@@ -23,10 +23,14 @@
     autocrlf = false
     editor = vi
     excludesfile = ~/gitignore_global.txt
+    quotepath = false
 [i18n]
     filesEncoding = utf-8
+    commitencoding = utf-8
+    logoutputencoding = utf-8
 [filter "lfs"]
     clean = git lfs clean %f
     smudge = git lfs smudge %f
     required = true
-
+[gui]
+    encoding = utf-8

@@ -4,8 +4,11 @@ set -x
 
 sudo apt-get update && \
 sudo apt-get install -y vim && \
-sudo apt-get install -y git \
-sudo apt-get install -y python3-pip
+sudo apt-get install -y git && \
+sudo apt-get install -y python3-pip && \
+sudo apt-get install -y gcc && \
+sudo apt-get install -y gdb && \
+sudo apt-get install -y cmake
 
 # prepare python3
 PYTHON_BIN=`which python`

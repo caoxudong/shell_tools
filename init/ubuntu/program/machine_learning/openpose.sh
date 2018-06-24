@@ -19,5 +19,8 @@ sudo ldconfig -v
 # install cudnn 5.1
 sudo ubuntu/install_cudnn.sh
 
+# install dependencies of caffe
+sudo apt-get install -y --no-install-recommends libboost-all-dev libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libboost-all-dev libhdf5-serial-dev libgflags-dev libgoogle-glog-dev liblmdb-dev protobuf-compiler libopenblas-dev libatlas-base-dev 
+
 # install caffe and build
 sudo ubuntu/install_caffe_and_openpose_if_cuda8.sh

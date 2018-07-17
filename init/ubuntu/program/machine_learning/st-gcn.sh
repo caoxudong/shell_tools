@@ -12,3 +12,6 @@ apt-get install ffmpeg
 # install requirements
 cd st-gcn
 pip install -r requirements.txt
+
+# get models
+bash tools/get_models.sh
